@@ -23,7 +23,7 @@ public class Student implements Serializable{
     @Column(name = "name", length = 128)
     private String name;
 
-    @Column(name = "name")
+    @Column(name = "age")
     private int age;
 
     @Column(name = "idcard")
