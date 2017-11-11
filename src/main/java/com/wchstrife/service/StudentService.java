@@ -41,4 +41,13 @@ public class StudentService {
 
 		return studentRepository.findAll(pageRequest);
 	}
+
+	/**
+	 * 自定义分页获取所有学生
+	 * @param page
+	 * @param size
+	 */
+	public void findAllStudentByMypage(int page, int size){
+
+	}
 }
