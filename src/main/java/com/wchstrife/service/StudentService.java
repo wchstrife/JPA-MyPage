@@ -8,6 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -18,6 +21,8 @@ public class StudentService {
 
 	@Autowired
 	StudentRepository studentRepository;
+	@PersistenceContext
+	EntityManager em;
 
 	/**
 	 * 查询所有的学生
@@ -48,6 +53,6 @@ public class StudentService {
 	 * @param size
 	 */
 	public void findAllStudentByMypage(int page, int size){
-
+		Query query = em.createNativeQuery("SELECT * FROM student LIMIT ? , ?").setParameter(1, page*size).setParameter(2, size);
 	}
 }
