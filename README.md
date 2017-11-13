@@ -59,11 +59,18 @@
 ```
 
 ## How to use
-Change the database information in application.properties
-Run the project
-Visit http://localhost:8080/jpa/student/get/jpaPage?page=0?size=2 and http://localhost:8080/jpa/student/get/myPage?page=0?size=2
+Change the database information in application.properties  
+
+Run the project  
+
+Visit http://localhost:8080/jpa/student/get/jpaPage?page=0?size=2 and http://localhost:8080/jpa/student/get/myPage?page=0?size=2  
+
 You can see the result Json
 
-You can find class PageUtil in package util.
-In the method of constructor you can find that how each variable is assigned.
+## About the code
+You can find class PageUtil in package util.  
+
+
+In the method of constructor you can find that how each variable is assigned.  
+
 In Service , you need create 2 sql in order to find the data and the total number of data, you can also find the example in StudentSerive
