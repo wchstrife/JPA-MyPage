@@ -2,6 +2,7 @@ package com.wchstrife.service;
 
 import com.wchstrife.dao.StudentRepository;
 import com.wchstrife.entity.Student;
+import com.wchstrife.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,7 +53,23 @@ public class StudentService {
 	 * @param page
 	 * @param size
 	 */
-	public void findAllStudentByMypage(int page, int size){
+	public PageUtil findAllStudentByMypage(int page, int size){
+
+		/*分页查询数据*/
 		Query query = em.createNativeQuery("SELECT * FROM student LIMIT ? , ?").setParameter(1, page*size).setParameter(2, size);
+		List<Student> studentList = query.getResultList();
+
+		/*查询总共的数据条目*/
+		query = em.createNativeQuery("SELECT COUNT(*) FROM student");
+		Object object = query.getResultList().get(0);
+		int totalElements = Integer.parseInt(object.toString());
+
+		/*构建自定义Page对象*/
+		PageUtil pageUtil = new PageUtil(size, page, totalElements);
+		pageUtil.setNumberOfElements(studentList.size());
+		pageUtil.setContent(studentList);
+
+		return pageUtil;
 	}
+
 }

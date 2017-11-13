@@ -1,6 +1,7 @@
 package com.wchstrife.service;
 
 import com.wchstrife.entity.Student;
+import com.wchstrife.util.PageUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class StudentServiceTest {
 
+
 	@Autowired
 	StudentService studentService;
 
@@ -32,5 +34,11 @@ public class StudentServiceTest {
 	public void testFindAllStudentByPage() throws Exception {
 		Page<Student> studentPage = studentService.findAllStudentByPage(0, 2);
 		System.out.println(studentPage.getSize());
+	}
+
+	@Test
+	public void findAllStudentByMypage() throws Exception {
+		PageUtil pageUtil = studentService.findAllStudentByMypage(0,2);
+		System.out.println(pageUtil);
 	}
 }

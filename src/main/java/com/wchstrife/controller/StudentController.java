@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wchstrife.entity.Student;
 import com.wchstrife.service.StudentService;
+import com.wchstrife.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -25,12 +26,22 @@ public class StudentController {
 	@Autowired
 	StudentService studentService;
 
-	@GetMapping("/get")
+	@GetMapping("/get/jpaPage")
 	public JSONObject getAllByPage(HttpServletRequest request, HttpServletResponse response, @RequestParam("page") int page, @RequestParam("size") int size){
 
 		Page<Student> studentPage =  studentService.findAllStudentByPage(page, size);
 
 		JSONObject jsonObject = (JSONObject) JSON.toJSON(studentPage);
+
+		return jsonObject;
+	}
+
+
+	@GetMapping("/get/myPage")
+	public JSONObject getAllByMyPage(HttpServletRequest request, HttpServletResponse response, @RequestParam("page") int page, @RequestParam("size") int size){
+		PageUtil pageUtil = studentService.findAllStudentByMypage(page, size);
+
+		JSONObject jsonObject = (JSONObject) JSON.toJSON(pageUtil);
 
 		return jsonObject;
 	}
