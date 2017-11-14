@@ -3,6 +3,8 @@ package com.wchstrife.service;
 import com.wchstrife.dao.StudentRepository;
 import com.wchstrife.entity.Student;
 import com.wchstrife.util.PageUtil;
+import org.hibernate.SQLQuery;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -56,8 +58,8 @@ public class StudentService {
 	public PageUtil findAllStudentByMypage(int page, int size){
 
 		/*分页查询数据*/
-		Query query = em.createNativeQuery("SELECT * FROM student LIMIT ? , ?").setParameter(1, page*size).setParameter(2, size);
-		List<Student> studentList = query.getResultList();
+		Query query = em.createNativeQuery("SELECT * FROM student s LIMIT " + page*size + "," + size);
+		List<Student> studentList = query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
 
 		/*查询总共的数据条目*/
 		query = em.createNativeQuery("SELECT COUNT(*) FROM student");

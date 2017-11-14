@@ -1,5 +1,7 @@
 package com.wchstrife.util;
 
+import com.wchstrife.entity.Student;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +48,7 @@ public class PageUtil {
 	/**
 	 * 数据
 	 */
-	private List content = new ArrayList();
+	private List<Student> content;
 
 	/**
 	 * 根据传入的当前多少页
@@ -130,7 +132,7 @@ public class PageUtil {
 		return content;
 	}
 
-	public void setContent(List content) {
+	public void setContent(List<Student> content) {
 		this.content = content;
 	}
 }

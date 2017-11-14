@@ -26,7 +26,7 @@ public class Student implements Serializable{
     @Column(name = "age")
     private int age;
 
-    @Column(name = "idcard")
+    @Column(name = "id_card")
     private String idCard;
 
     @Column(name = "school_name")
